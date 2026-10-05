@@ -31,8 +31,8 @@ export const PROFIL = {
   nama: 'Aldi Yonatan Rusnawan',
   panggilan: 'Aldi',
   inisial: 'AY',
-  npm: '2428240089',
-  kelas: 'SI5B',
+  /** Foto profil di folder public/ (mis. '/foto.jpg'). null = pakai inisial. */
+  foto: '/foto.jpg' as string | null,
   peran: {
     id: 'Mahasiswa Sistem Informasi · Pengembang Web Full-Stack',
     en: 'Information Systems Student · Full-Stack Web Developer',

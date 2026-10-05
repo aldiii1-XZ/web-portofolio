@@ -12,7 +12,11 @@ describe('profil', () => {
   it('memuat identitas dasar', () => {
     expect(PROFIL.nama).toBe('Aldi Yonatan Rusnawan')
     expect(PROFIL.inisial).toHaveLength(2)
-    expect(PROFIL.npm).toBe('2428240089')
+  })
+
+  it('tidak lagi memuat NPM & kelas', () => {
+    expect('npm' in PROFIL).toBe(false)
+    expect('kelas' in PROFIL).toBe(false)
   })
 
   it('punya teks dwibahasa yang tidak kosong', () => {

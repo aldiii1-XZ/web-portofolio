@@ -28,7 +28,18 @@ function cek(nama, ok, detail = '') {
     // ── 1. Nama & bagian utama tampil ──────────────────────────────────────
     const isi = await page.textContent('body')
     cek('Nama tampil', isi.includes('Aldi Yonatan Rusnawan'))
+    cek('NPM & kelas tidak tampil', !isi.includes('NPM') && !isi.includes('SI5B') && !isi.includes('2428240089'))
     cek('Bagian Tentang tampil', isi.includes('Tentang saya'))
+
+    // ── 1b. Foto profil tampil ─────────────────────────────────────────────
+    const adaFoto = await page.locator('img.lingkaran').count()
+    cek('Foto profil tampil', adaFoto === 1)
+    if (adaFoto) {
+      const alami = await page.locator('img.lingkaran').evaluate(el => ({ w: el.naturalWidth, h: el.naturalHeight }))
+      cek('Foto profil berhasil dimuat', alami.w > 0 && alami.h > 0, `${alami.w}x${alami.h}`)
+      const bulat = await page.locator('img.lingkaran').evaluate(el => getComputedStyle(el).borderRadius)
+      cek('Foto profil berbentuk bulat', bulat.includes('50%'))
+    }
     cek('Bagian Keahlian tampil', isi.includes('Keahlian'))
     cek('Bagian Proyek tampil', isi.includes('Proyek'))
     cek('Bagian Kontak tampil', isi.includes('Kontak'))
