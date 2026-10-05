@@ -40,8 +40,7 @@ a { color: inherit; text-decoration: none; }
   display: flex; align-items: center; justify-content: space-between;
   gap: 16px; height: 62px;
 }
-.bilah-nama { font-weight: 700; letter-spacing: 0.2px; }
-.bilah-nama span { color: var(--brand); }
+.bilah-logo { display: flex; align-items: center; }
 .bilah-nav { display: flex; gap: 20px; align-items: center; }
 .bilah-nav a { color: var(--teks-2); font-size: 14px; transition: color 0.15s; }
 .bilah-nav a:hover { color: var(--teks); }

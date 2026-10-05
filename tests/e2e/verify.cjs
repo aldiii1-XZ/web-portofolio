@@ -40,6 +40,35 @@ function cek(nama, ok, detail = '') {
       const bulat = await page.locator('img.lingkaran').evaluate(el => getComputedStyle(el).borderRadius)
       cek('Foto profil berbentuk bulat', bulat.includes('50%'))
     }
+
+    // ── 1c. Logo AYR menggantikan teks "Aldi." ─────────────────────────────
+    const logo = page.locator('.bilah-logo img')
+    cek('Logo tampil di bilah atas', (await logo.count()) === 1)
+    if (await logo.count()) {
+      const alami = await logo.evaluate(el => ({ w: el.naturalWidth, h: el.naturalHeight, alt: el.alt }))
+      cek('Logo berhasil dimuat', alami.w > 0 && alami.h > 0, `${alami.w}x${alami.h}`)
+      cek('Logo punya teks alternatif', alami.alt.length > 0, alami.alt)
+      const tinggi = await logo.evaluate(el => el.getBoundingClientRect().height)
+      cek('Tinggi logo wajar (25–40px)', tinggi >= 25 && tinggi <= 40, `${tinggi.toFixed(1)}px`)
+    }
+    // Teks lama "Aldi." tidak boleh muncul lagi sebagai tulisan
+    const namaLama = await page.locator('.bilah-nama').count()
+    cek('Teks lama "Aldi." sudah diganti logo', namaLama === 0)
+
+    // ── 1d. Ikon tab browser (favicon) ─────────────────────────────────────
+    const fav = await page.evaluate(() => {
+      const l = document.querySelector('link[rel="icon"]')
+      return l ? l.getAttribute('href') : null
+    })
+    cek('Favicon ditautkan di halaman', fav !== null && fav.includes('favicon'), String(fav))
+    const favOk = await page.evaluate(async () => {
+      const l = document.querySelector('link[rel="icon"]')
+      if (!l) return false
+      const res = await fetch(l.href)
+      return res.ok
+    })
+    cek('Berkas favicon bisa diakses', favOk === true)
+
     cek('Bagian Keahlian tampil', isi.includes('Keahlian'))
     cek('Bagian Proyek tampil', isi.includes('Proyek'))
     cek('Bagian Kontak tampil', isi.includes('Kontak'))

@@ -1,13 +1,6 @@
-import { PROFIL } from '../data'
+import { MENU } from './menu'
+import { Logo } from './Logo'
 import { useBahasa } from '../bahasa'
-
-/** Menu bagian halaman — dipakai bilah atas & footer. */
-export const MENU = [
-  { id: 'tentang', id_: 'Tentang', en: 'About' },
-  { id: 'keahlian', id_: 'Keahlian', en: 'Skills' },
-  { id: 'proyek', id_: 'Proyek', en: 'Projects' },
-  { id: 'kontak', id_: 'Kontak', en: 'Contact' },
-] as const
 
 export function BilahAtas() {
   const { bahasa, ganti, t } = useBahasa()
@@ -15,9 +8,8 @@ export function BilahAtas() {
   return (
     <header className="bilah">
       <div className="wadah bilah-isi">
-        <a href="#atas" className="bilah-nama">
-          {PROFIL.panggilan}
-          <span>.</span>
+        <a href="#atas" className="bilah-logo" aria-label="Aldi Yonatan Rusnawan">
+          <Logo tinggi={30} />
         </a>
         <nav className="bilah-nav">
           {MENU.map(m => (
