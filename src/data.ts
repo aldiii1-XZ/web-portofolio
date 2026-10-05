@@ -44,12 +44,12 @@ export const PROFIL = {
   tentang: {
     id: [
       'Saya Aldi Yonatan Rusnawan, mahasiswa Sistem Informasi. Saya suka mengubah ide menjadi aplikasi yang benar-benar bisa dipakai orang, bukan sekadar tampilan.',
-      'Sejauh ini saya sudah membangun beberapa aplikasi web utuh: sistem antrean klinik dengan peran pengguna dan asisten AI, toko daring dengan keranjang dan pembayaran, aplikasi obrolan real-time, serta prototipe aplikasi kantin. Semuanya saya kerjakan dari nol — mulai dari merancang basis data, menulis API, membuat antarmuka, sampai menguji dan menayangkannya.',
+      'Sejauh ini saya sudah membangun beberapa aplikasi utuh: aplikasi pelaporan masalah kota untuk warga Palembang dengan peta, pemantauan cuaca, dan asisten AI; sistem antrean klinik dengan peran pengguna; toko daring dengan keranjang dan pembayaran; aplikasi obrolan real-time; serta prototipe aplikasi kantin. Semuanya saya kerjakan dari nol — mulai dari merancang basis data, menulis API, membuat antarmuka, sampai menguji dan menayangkannya.',
       'Bagi saya, aplikasi yang baik adalah yang selesai: berjalan, diuji, dan bisa dibuka siapa saja lewat tautan.',
     ],
     en: [
       'I am Aldi Yonatan Rusnawan, an Information Systems student. I enjoy turning ideas into applications people can actually use, not just a visual mock-up.',
-      'So far I have built several complete web applications: a clinic queue system with user roles and an AI assistant, an online store with cart and payment, a real-time chat app, and a canteen app prototype. I built all of them from scratch — designing the database, writing the API, building the interface, then testing and deploying it.',
+      'So far I have built several complete applications: a city-issue reporting app for Palembang citizens with maps, weather monitoring, and an AI assistant; a clinic queue system with user roles; an online store with cart and payment; a real-time chat app; and a canteen app prototype. I built all of them from scratch — designing the database, writing the API, building the interface, then testing and deploying it.',
       'To me, a good application is a finished one: it runs, it is tested, and anyone can open it through a link.',
     ],
   },
@@ -61,12 +61,16 @@ export const KEAHLIAN: { judul: TeksDwibahasa; isi: string[] }[] = [
     isi: ['React', 'TypeScript', 'Vite', 'HTML & CSS', 'Desain responsif'],
   },
   {
+    judul: { id: 'Aplikasi Mobile', en: 'Mobile Apps' },
+    isi: ['Flutter', 'Dart', 'Widget kustom', 'Build web & Android'],
+  },
+  {
     judul: { id: 'Server (Backend)', en: 'Backend' },
     isi: ['Node.js', 'Express', 'REST API', 'WebSocket', 'Validasi data (Zod)'],
   },
   {
     judul: { id: 'Basis Data', en: 'Database' },
-    isi: ['SQLite', 'Perancangan skema', 'Penyimpanan berkas (Vercel Blob)'],
+    isi: ['Supabase', 'SQLite', 'Perancangan skema', 'Penyimpanan berkas (Vercel Blob)'],
   },
   {
     judul: { id: 'Alat & Lainnya', en: 'Tools & Others' },
@@ -75,6 +79,19 @@ export const KEAHLIAN: { judul: TeksDwibahasa; isi: string[] }[] = [
 ]
 
 export const PROYEK: Proyek[] = [
+  {
+    slug: 'siagakota',
+    nama: 'SIAGAKOTA',
+    jenis: { id: 'Aplikasi Kota & Pengaduan', en: 'City & Citizen Reporting App' },
+    deskripsi: {
+      id: 'Aplikasi warga Palembang untuk melaporkan masalah kota: laporan tampil di peta dengan warna sesuai tingkat keparahan, ada riwayat status, pemberitahuan dalam aplikasi, serta pantauan cuaca, kualitas udara, dan gempa dari sumber resmi. Dilengkapi portal petugas, pembatas spam, dan asisten AI.',
+      en: 'A citizen app for Palembang to report city issues: reports appear on a map colored by severity, with status history, in-app notifications, plus live weather, air quality, and earthquake monitoring from official sources. Includes a staff portal, spam limits, and an AI assistant.',
+    },
+    teknologi: ['Flutter', 'Dart', 'Supabase', 'AI', 'Vercel'],
+    live: 'https://siagakota-app.vercel.app',
+    repo: 'https://github.com/aldiii1-XZ/siagakota_app',
+    aksen: '#60a5fa',
+  },
   {
     slug: 'siklinik',
     nama: 'SIKLINIK',
