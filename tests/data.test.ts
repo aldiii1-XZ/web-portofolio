@@ -6,7 +6,7 @@
  */
 import { describe, expect, it } from 'vitest'
 
-import { PROFIL, KEAHLIAN, PROYEK, KONTAK } from '../src/data'
+import { PROFIL, KEAHLIAN, PROYEK, KONTAK, KATEGORI } from '../src/data'
 
 describe('profil', () => {
   it('memuat identitas dasar', () => {
@@ -57,6 +57,38 @@ describe('proyek', () => {
 
   it('setiap proyek punya setidaknya satu tautan', () => {
     for (const p of PROYEK) expect(Boolean(p.live || p.repo)).toBe(true)
+  })
+})
+
+describe('kategori tingkat', () => {
+  it('urut dari mudah ke sulit', () => {
+    expect(KATEGORI.map(k => k.kunci)).toEqual(['mudah', 'menengah', 'sulit'])
+  })
+
+  it('tiap kategori punya judul & keterangan dwibahasa', () => {
+    for (const k of KATEGORI) {
+      expect(k.judul.id.length).toBeGreaterThan(0)
+      expect(k.judul.en.length).toBeGreaterThan(0)
+      expect(k.keterangan.id.length).toBeGreaterThan(20)
+      expect(k.keterangan.en.length).toBeGreaterThan(20)
+    }
+  })
+
+  it('setiap proyek punya tingkat yang dikenal', () => {
+    const kunci: readonly string[] = KATEGORI.map(k => k.kunci)
+    for (const p of PROYEK) expect(kunci).toContain(p.tingkat)
+  })
+
+  it('setiap kategori terisi minimal satu proyek', () => {
+    for (const k of KATEGORI) {
+      expect(PROYEK.filter(p => p.tingkat === k.kunci).length).toBeGreaterThan(0)
+    }
+  })
+
+  it('proyek jadwal kuliah ada dengan tautan live', () => {
+    const p = PROYEK.find(x => x.slug === 'jadwal-kuliah')
+    expect(p).toBeDefined()
+    expect(p?.live).toMatch(/^https:\/\//)
   })
 })
 

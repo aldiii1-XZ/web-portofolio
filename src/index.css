@@ -118,6 +118,23 @@ img.lingkaran { object-fit: cover; border: 3px solid var(--garis); }
 }
 
 /* ── Proyek ──────────────────────────────────────────────────────────────── */
+/* Kelompok tingkat proyek: Mudah → Menengah → Sulit. */
+.kategori { margin-bottom: 38px; }
+.kategori:last-child { margin-bottom: 0; }
+.kategori-kepala {
+  display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--garis); padding-bottom: 10px;
+}
+.kategori-judul {
+  display: flex; align-items: center; gap: 9px;
+  font-size: 15px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+}
+.kategori-judul::before {
+  content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--brand);
+}
+.kategori-jumlah { margin-left: auto; color: var(--teks-2); font-size: 13px; }
+.kategori-ket { color: var(--teks-2); font-size: 13.5px; margin: 10px 0 16px; max-width: 720px; }
+
 .proyek-peti { display: grid; gap: 18px; }
 .proyek {
   background: var(--kartu); border: 1px solid var(--garis); border-radius: var(--radius);
@@ -130,7 +147,7 @@ img.lingkaran { object-fit: cover; border: 3px solid var(--garis); }
   background: var(--aksen, var(--brand));
 }
 .proyek-kepala { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
-.proyek-kepala h3 { font-size: 19px; letter-spacing: -0.2px; }
+.proyek-kepala h4 { font-size: 19px; letter-spacing: -0.2px; }
 .proyek-jenis { color: var(--aksen, var(--brand)); font-size: 13px; font-weight: 600; }
 .proyek p { color: var(--teks-2); margin: 12px 0 16px; font-size: 15px; }
 

@@ -9,6 +9,9 @@ export interface TeksDwibahasa {
   en: string
 }
 
+/** Tingkat kesulitan sistem — dipakai untuk mengelompokkan proyek. */
+export type Tingkat = 'mudah' | 'menengah' | 'sulit'
+
 export interface Proyek {
   slug: string
   nama: string
@@ -18,6 +21,7 @@ export interface Proyek {
   live: string | null
   repo: string | null
   aksen: string
+  tingkat: Tingkat
 }
 
 export interface Kontak {
@@ -44,12 +48,12 @@ export const PROFIL = {
   tentang: {
     id: [
       'Saya Aldi Yonatan Rusnawan, mahasiswa Sistem Informasi. Saya suka mengubah ide menjadi aplikasi yang benar-benar bisa dipakai orang, bukan sekadar tampilan.',
-      'Sejauh ini saya sudah membangun beberapa aplikasi utuh: aplikasi pelaporan masalah kota untuk warga Palembang dengan peta, pemantauan cuaca, dan asisten AI; sistem antrean klinik dengan peran pengguna; toko daring dengan keranjang dan pembayaran; aplikasi obrolan real-time; serta prototipe aplikasi kantin. Semuanya saya kerjakan dari nol — mulai dari merancang basis data, menulis API, membuat antarmuka, sampai menguji dan menayangkannya.',
+      'Sejauh ini saya sudah membangun beberapa aplikasi utuh: aplikasi pelaporan masalah kota untuk warga Palembang dengan peta, pemantauan cuaca, dan asisten AI; sistem antrean klinik dengan peran pengguna; toko daring dengan keranjang dan pembayaran; aplikasi obrolan real-time; prototipe aplikasi kantin; serta aplikasi jadwal kuliah berbasis Flutter beserta uji widgetnya. Ada juga latihan REST API dari mata kuliah yang saya simpan sebagai titik awal. Semuanya saya kerjakan dari nol — mulai dari merancang basis data, menulis API, membuat antarmuka, sampai menguji dan menayangkannya.',
       'Bagi saya, aplikasi yang baik adalah yang selesai: berjalan, diuji, dan bisa dibuka siapa saja lewat tautan.',
     ],
     en: [
       'I am Aldi Yonatan Rusnawan, an Information Systems student. I enjoy turning ideas into applications people can actually use, not just a visual mock-up.',
-      'So far I have built several complete applications: a city-issue reporting app for Palembang citizens with maps, weather monitoring, and an AI assistant; a clinic queue system with user roles; an online store with cart and payment; a real-time chat app; and a canteen app prototype. I built all of them from scratch — designing the database, writing the API, building the interface, then testing and deploying it.',
+      'So far I have built several complete applications: a city-issue reporting app for Palembang citizens with maps, weather monitoring, and an AI assistant; a clinic queue system with user roles; an online store with cart and payment; a real-time chat app; a canteen app prototype; and a Flutter-based class schedule app with its widget tests. There is also a coursework REST API exercise I keep as a starting point. I built all of them from scratch — designing the database, writing the API, building the interface, then testing and deploying it.',
       'To me, a good application is a finished one: it runs, it is tested, and anyone can open it through a link.',
     ],
   },
@@ -78,6 +82,37 @@ export const KEAHLIAN: { judul: TeksDwibahasa; isi: string[] }[] = [
   },
 ]
 
+/**
+ * Kategori tingkat proyek — urut dari yang paling mudah ke yang paling sulit.
+ * Proyek dikelompokkan otomatis lewat kolom `tingkat`-nya (lihat Proyek.tsx).
+ */
+export const KATEGORI: { kunci: Tingkat; judul: TeksDwibahasa; keterangan: TeksDwibahasa }[] = [
+  {
+    kunci: 'mudah',
+    judul: { id: 'Mudah', en: 'Easy' },
+    keterangan: {
+      id: 'Latihan dasar dan aplikasi berlingkup kecil — satu alur utama, tanpa peran pengguna.',
+      en: 'Foundational practice and small-scope apps — one main flow, no user roles.',
+    },
+  },
+  {
+    kunci: 'menengah',
+    judul: { id: 'Menengah', en: 'Intermediate' },
+    keterangan: {
+      id: 'Beberapa fitur sekaligus dalam satu aplikasi: keranjang belanja, pembayaran, atau obrolan waktu nyata.',
+      en: 'Several features combined in one app: shopping cart, payment, or real-time chat.',
+    },
+  },
+  {
+    kunci: 'sulit',
+    judul: { id: 'Sulit', en: 'Hard' },
+    keterangan: {
+      id: 'Sistem besar: lebih dari satu peran pengguna, integrasi layanan luar, dan pengujian menyeluruh.',
+      en: 'Larger systems: multiple user roles, external integrations, and thorough testing.',
+    },
+  },
+]
+
 export const PROYEK: Proyek[] = [
   {
     slug: 'siagakota',
@@ -91,6 +126,7 @@ export const PROYEK: Proyek[] = [
     live: 'https://siagakota-app.vercel.app',
     repo: 'https://github.com/aldiii1-XZ/siagakota_app',
     aksen: '#60a5fa',
+    tingkat: 'sulit',
   },
   {
     slug: 'siklinik',
@@ -104,6 +140,7 @@ export const PROYEK: Proyek[] = [
     live: 'https://siklinik.vercel.app',
     repo: 'https://github.com/aldiii1-XZ/siklinik',
     aksen: '#4fd1c5',
+    tingkat: 'sulit',
   },
   {
     slug: 'nusawear',
@@ -117,6 +154,7 @@ export const PROYEK: Proyek[] = [
     live: 'https://nusawear.vercel.app',
     repo: 'https://github.com/aldiii1-XZ/nusawear',
     aksen: '#f6ad55',
+    tingkat: 'menengah',
   },
   {
     slug: 'ngobrol',
@@ -130,6 +168,35 @@ export const PROYEK: Proyek[] = [
     live: 'https://ngobrol-nu.vercel.app',
     repo: 'https://github.com/aldiii1-XZ/ngobrol',
     aksen: '#6d8bff',
+    tingkat: 'menengah',
+  },
+  {
+    slug: 'jadwal-kuliah',
+    nama: 'JADWAL KULIAH',
+    jenis: { id: 'Aplikasi Mobile — Jadwal Kuliah', en: 'Mobile App — Class Schedule' },
+    deskripsi: {
+      id: 'Aplikasi Flutter untuk melihat jadwal kuliah mingguan: pilih hari lewat chip, ringkasan jumlah mata kuliah dan total jam, form tambah/ubah dengan validasi jam, halaman detail, dan uji widget untuk alur utamanya.',
+      en: 'A Flutter app for viewing a weekly class schedule: pick a day with chips, see a summary of course count and total hours, add or edit entries through a validated form, open a detail page, and a set of widget tests covering the main flows.',
+    },
+    teknologi: ['Flutter', 'Dart', 'Vercel'],
+    live: 'https://jadwal-kuliah-fawn.vercel.app',
+    repo: 'https://github.com/aldiii1-XZ/jadwal_kuliah',
+    aksen: '#a78bfa',
+    tingkat: 'mudah',
+  },
+  {
+    slug: 'rest-api-perikanan',
+    nama: 'REST API PERIKANAN',
+    jenis: { id: 'Latihan API — Tugas Kuliah', en: 'API Practice — Coursework' },
+    deskripsi: {
+      id: 'Latihan REST API memakai Express.js dengan tema kolam ikan: endpoint CRUD, pencarian lewat query string, validasi input, dan kumpulan permintaan Postman untuk mencobanya.',
+      en: 'A REST API exercise with Express.js on fish-pond data: CRUD endpoints, query-string filtering, input validation, and a Postman collection for trying the requests.',
+    },
+    teknologi: ['Node.js', 'Express', 'REST API', 'Postman'],
+    live: null,
+    repo: 'https://github.com/aldiii1-XZ/tugas1-restful-2428240089',
+    aksen: '#fb7185',
+    tingkat: 'mudah',
   },
   {
     slug: 'sikantin',
@@ -143,6 +210,7 @@ export const PROYEK: Proyek[] = [
     live: null,
     repo: 'https://github.com/aldiii1-XZ/SIKANTIN-Prototype-',
     aksen: '#68d391',
+    tingkat: 'mudah',
   },
 ]
 
