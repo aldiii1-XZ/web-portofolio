@@ -90,6 +90,12 @@ describe('kategori tingkat', () => {
     expect(p).toBeDefined()
     expect(p?.live).toMatch(/^https:\/\//)
   })
+
+  it('proyek food diary ada dengan tautan live', () => {
+    const p = PROYEK.find(x => x.slug === 'food-diary')
+    expect(p).toBeDefined()
+    expect(p?.live).toMatch(/^https:\/\//)
+  })
 })
 
 describe('keahlian', () => {

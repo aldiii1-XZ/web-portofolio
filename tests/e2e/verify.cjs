@@ -74,7 +74,7 @@ function cek(nama, ok, detail = '') {
     cek('Bagian Kontak tampil', isi.includes('Kontak'))
 
     // ── 2. Semua proyek tampil ─────────────────────────────────────────────
-    for (const nama of ['SIAGAKOTA', 'SIKLINIK', 'NUSAWEAR', 'NGOBROL', 'SIKANTIN', 'JADWAL KULIAH', 'REST API PERIKANAN']) {
+    for (const nama of ['SIAGAKOTA', 'SIKLINIK', 'NUSAWEAR', 'NGOBROL', 'SIKANTIN', 'FOOD DIARY', 'JADWAL KULIAH', 'REST API PERIKANAN']) {
       cek(`Proyek ${nama} tampil`, isi.includes(nama))
     }
 
@@ -86,14 +86,15 @@ function cek(nama, ok, detail = '') {
     const mudah = await jml('mudah')
     const menengah = await jml('menengah')
     const sulit = await jml('sulit')
-    cek('Jumlah proyek per kategori (3/2/2)', mudah === 3 && menengah === 2 && sulit === 2, `mudah=${mudah} menengah=${menengah} sulit=${sulit}`)
+    cek('Jumlah proyek per kategori (3/3/2)', mudah === 3 && menengah === 3 && sulit === 2, `mudah=${mudah} menengah=${menengah} sulit=${sulit}`)
     cek('JADWAL KULIAH berada di kategori Mudah', (await page.locator('.kategori[data-kategori="mudah"] h4:has-text("JADWAL KULIAH")').count()) === 1)
     cek('SIKLINIK berada di kategori Sulit', (await page.locator('.kategori[data-kategori="sulit"] h4:has-text("SIKLINIK")').count()) === 1)
-    cek('Angka jumlah proyek per kategori tampil', (await page.locator('.kategori-jumlah:has-text("3 proyek")').count()) === 1)
+    cek('FOOD DIARY berada di kategori Menengah', (await page.locator('.kategori[data-kategori="menengah"] h4:has-text("FOOD DIARY")').count()) === 1)
+    cek('Angka jumlah proyek per kategori tampil', (await page.locator('.kategori-jumlah:has-text("3 proyek")').count()) === 2)
 
     // ── 3. Tombol "Buka aplikasi" hanya untuk proyek yang live ─────────────
     const tombolBuka = await page.locator('a:has-text("Buka aplikasi")').count()
-    cek('Lima proyek punya tombol "Buka aplikasi"', tombolBuka === 5, `${tombolBuka} tombol`)
+    cek('Enam proyek punya tombol "Buka aplikasi"', tombolBuka === 6, `${tombolBuka} tombol`)
 
     // ── 4. Tautan live benar ───────────────────────────────────────────────
     const hrefs = await page.locator('a[target="_blank"]').evaluateAll(as => as.map(a => a.href))
@@ -102,6 +103,7 @@ function cek(nama, ok, detail = '') {
     cek('Tautan NUSAWEAR benar', hrefs.some(h => h.includes('nusawear.vercel.app')))
     cek('Tautan NGOBROL benar', hrefs.some(h => h.includes('ngobrol-nu.vercel.app')))
     cek('Tautan JADWAL KULIAH benar', hrefs.some(h => h.includes('jadwal-kuliah-fawn.vercel.app')))
+    cek('Tautan FOOD DIARY benar', hrefs.some(h => h.includes('food-diary-android.vercel.app')))
     cek('Tautan GitHub benar', hrefs.some(h => h.includes('github.com/aldiii1-XZ')))
 
     // ── 5. Kontak: email & WhatsApp ────────────────────────────────────────
@@ -117,7 +119,7 @@ function cek(nama, ok, detail = '') {
     cek('Mode Inggris: judul berubah', isiEn.includes('About me') && isiEn.includes('Projects'))
     cek('Mode Inggris: deskripsi berubah', isiEn.includes('Open app'))
     cek('Mode Inggris: kategori berbahasa Inggris', isiEn.includes('Easy') && isiEn.includes('Intermediate') && isiEn.includes('Hard'))
-    cek('Mode Inggris: tombol "Open app" muncul', (await page.locator('a:has-text("Open app")').count()) === 5)
+    cek('Mode Inggris: tombol "Open app" muncul', (await page.locator('a:has-text("Open app")').count()) === 6)
     cek('Atribut lang jadi "en"', (await page.getAttribute('html', 'lang')) === 'en')
 
     // ── 7. Kembali ke Indonesia & bahasa diingat ───────────────────────────

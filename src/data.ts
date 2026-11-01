@@ -48,12 +48,12 @@ export const PROFIL = {
   tentang: {
     id: [
       'Saya Aldi Yonatan Rusnawan, mahasiswa Sistem Informasi. Saya suka mengubah ide menjadi aplikasi yang benar-benar bisa dipakai orang, bukan sekadar tampilan.',
-      'Sejauh ini saya sudah membangun beberapa aplikasi utuh: aplikasi pelaporan masalah kota untuk warga Palembang dengan peta, pemantauan cuaca, dan asisten AI; sistem antrean klinik dengan peran pengguna; toko daring dengan keranjang dan pembayaran; aplikasi obrolan real-time; prototipe aplikasi kantin; serta aplikasi jadwal kuliah berbasis Flutter beserta uji widgetnya. Ada juga latihan REST API dari mata kuliah yang saya simpan sebagai titik awal. Semuanya saya kerjakan dari nol — mulai dari merancang basis data, menulis API, membuat antarmuka, sampai menguji dan menayangkannya.',
+      'Sejauh ini saya sudah membangun beberapa aplikasi utuh: aplikasi pelaporan masalah kota untuk warga Palembang dengan peta, pemantauan cuaca, dan asisten AI; sistem antrean klinik dengan peran pengguna; toko daring dengan keranjang dan pembayaran; aplikasi obrolan real-time; prototipe aplikasi kantin; pencatat makan & kalori harian dengan asisten AI dan pengenalan makanan dari foto; serta aplikasi jadwal kuliah berbasis Flutter beserta uji widgetnya. Ada juga latihan REST API dari mata kuliah yang saya simpan sebagai titik awal. Semuanya saya kerjakan dari nol — mulai dari merancang basis data, menulis API, membuat antarmuka, sampai menguji dan menayangkannya.',
       'Bagi saya, aplikasi yang baik adalah yang selesai: berjalan, diuji, dan bisa dibuka siapa saja lewat tautan.',
     ],
     en: [
       'I am Aldi Yonatan Rusnawan, an Information Systems student. I enjoy turning ideas into applications people can actually use, not just a visual mock-up.',
-      'So far I have built several complete applications: a city-issue reporting app for Palembang citizens with maps, weather monitoring, and an AI assistant; a clinic queue system with user roles; an online store with cart and payment; a real-time chat app; a canteen app prototype; and a Flutter-based class schedule app with its widget tests. There is also a coursework REST API exercise I keep as a starting point. I built all of them from scratch — designing the database, writing the API, building the interface, then testing and deploying it.',
+      'So far I have built several complete applications: a city-issue reporting app for Palembang citizens with maps, weather monitoring, and an AI assistant; a clinic queue system with user roles; an online store with cart and payment; a real-time chat app; a canteen app prototype; a food diary that tracks daily calories with an AI assistant and recognises meals from photos; and a Flutter-based class schedule app with its widget tests. There is also a coursework REST API exercise I keep as a starting point. I built all of them from scratch — designing the database, writing the API, building the interface, then testing and deploying it.',
       'To me, a good application is a finished one: it runs, it is tested, and anyone can open it through a link.',
     ],
   },
@@ -66,7 +66,7 @@ export const KEAHLIAN: { judul: TeksDwibahasa; isi: string[] }[] = [
   },
   {
     judul: { id: 'Aplikasi Mobile', en: 'Mobile Apps' },
-    isi: ['Flutter', 'Dart', 'Widget kustom', 'Build web & Android'],
+    isi: ['Flutter', 'Dart', 'Widget kustom', 'Build web & Android', 'Pengolahan foto di perangkat'],
   },
   {
     judul: { id: 'Server (Backend)', en: 'Backend' },
@@ -141,6 +141,20 @@ export const PROYEK: Proyek[] = [
     repo: 'https://github.com/aldiii1-XZ/siklinik',
     aksen: '#4fd1c5',
     tingkat: 'sulit',
+  },
+  {
+    slug: 'food-diary',
+    nama: 'FOOD DIARY',
+    jenis: { id: 'Aplikasi Kalori & Makanan', en: 'Calorie & Food App' },
+    deskripsi: {
+      id: 'Pencatat makan harian: catat makanan tiap hari, lihat total kalori terhadap batas harian, tanya jawab soal makanan lewat asisten AI, dan kenali makanan langsung dari foto. Tersedia sebagai aplikasi Android dan web, dengan foto dikecilkan di perangkat sebelum dikirim.',
+      en: 'A daily food diary: log meals day by day, track calories against a daily limit, ask an AI assistant about food, and recognise meals straight from a photo. Available as an Android and web app, with photos shrunk on the device before upload.',
+    },
+    teknologi: ['Flutter', 'Dart', 'AI', 'Vercel Blob', 'Vercel'],
+    live: 'https://food-diary-android.vercel.app',
+    repo: 'https://github.com/aldiii1-XZ/food-diary-android',
+    aksen: '#34d399',
+    tingkat: 'menengah',
   },
   {
     slug: 'nusawear',
